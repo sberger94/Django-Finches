@@ -25,7 +25,7 @@ class Finch(models.Model):
         return reverse('detail', kwargs={'finch_id': self.id})
 
 class Spotted(models.Model):
-    date = models.DateField()
+    date = models.DateField('spotted on')
     location = models.CharField(
         max_length=1,
         choices=SPOTTED,
