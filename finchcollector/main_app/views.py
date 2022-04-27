@@ -8,6 +8,14 @@ class FinchCreate(CreateView):
     model = Finch
     fields = '__all__'
 
+class FinchUpdate(UpdateView):
+    model = Finch
+    fields = ['species', 'description', 'age']
+
+class FinchDelete(DeleteView):
+    model = Finch
+    success_url = '/finches/'
+
 
 def home(request):
     return HttpResponse('<h1>Hello ya filthy bird</h1>')
