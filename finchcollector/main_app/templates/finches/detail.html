@@ -42,6 +42,24 @@
     </table>
   </div>
 </div>
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{ finch.name }}'s Habitats</h3>
+    {% if finch.habitats.count %}
+      {% for habitat in finch.habitats.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">{{ habitat.temperature }} Degree {{ habitat.name }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No known habitats yet!</h5>
+    {% endif %}
+  </div>
+  <!-- Available habitats will come here -->
+</div>
 
 <script>
   const dateEl = document.getElementById('id_date');

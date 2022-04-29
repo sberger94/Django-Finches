@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.http import HttpResponse
-from .models import Finch
+from .models import Finch, Habitat
 from .forms import SpottedForm
 # Create your views here.
 
@@ -42,3 +43,23 @@ def add_sighting(request, finch_id):
         new_sighting.finch_id = finch_id
         new_sighting.save()
     return redirect('detail', finch_id=finch_id)
+
+
+
+class HabitatList(ListView):
+    model = Habitat
+
+class HabitatDetail(DetailView):
+    model = Habitat
+
+class HabitatCreate(CreateView):
+    model = Habitat
+    fields = '__all__'
+
+class HabitatUpdate(UpdateView):
+    model = Habitat
+    fields = '__all__'
+
+class HabitatDelete(DeleteView):
+    model = Habitat
+    success_url = '/habitats/'
