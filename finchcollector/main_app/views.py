@@ -31,9 +31,11 @@ def finches_index(request):
 
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
+    habitats_not_seen_in = Habitat.objects.exclude(id__in = finch.habitats.all().values_list('id'))
     spotted_form = SpottedForm()
     return render(request, 'finches/detail.html', {
-        'finch': finch, 'spotted_form': spotted_form
+        'finch': finch, 'spotted_form': spotted_form,
+        'habitats': habitats_not_seen_in
         })
 
 def add_sighting(request, finch_id):
@@ -42,6 +44,10 @@ def add_sighting(request, finch_id):
         new_sighting = form.save(commit=False)
         new_sighting.finch_id = finch_id
         new_sighting.save()
+    return redirect('detail', finch_id=finch_id)
+
+def assoc_habitat(request, finch_id, habitat_id):
+    Finch.objects.get(id=finch_id).habitats.add(habitat_id)
     return redirect('detail', finch_id=finch_id)
 
 

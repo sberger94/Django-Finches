@@ -10,6 +10,7 @@ urlpatterns = [
     path('finches/<int:pk>/update/', views.FinchUpdate.as_view(), name='finches_update'),
     path('finches/<int:pk>/delete/', views.FinchDelete.as_view(), name='finches_delete'),
     path('finches/<int:finch_id>/add_sighting/', views.add_sighting, name='add_sighting'),
+    path('finches/<int:finch_id>/assoc_habitat/<int:habitat_id>/', views.assoc_habitat, name='assoc_habitat'),
     path('habitats/', views.HabitatList.as_view(), name='habitats_index'),
     path('habitats/<int:pk>', views.HabitatDetail.as_view(), name='habitats_detail'),
     path('habitats/create', views.HabitatCreate.as_view(), name='habitats_create'),
